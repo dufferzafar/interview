@@ -2,7 +2,7 @@
 #include <vector>
 
 #include <cstdlib>      // for rand
-#include <algorithm>
+#include <algorithm>    // for sort, find
 
 #define all(v) v.begin(), v.end()
 #define rall(v) v.rbegin(), v.rend()
@@ -41,4 +41,15 @@ int main() {
 
     sort(rall(v2));
     cout << "Vector of random integers (sorted - descending): "; print_vector(v2); cout << endl;
+
+    // Check whether an element exists
+    int number;
+    cout << "Enter a number to find: ";
+    cin >> number;
+
+    if (find(all(v2), number) != v2.end()) {
+        cout << "Found!" << endl;
+    } else {
+        cout << "Not Found!" << endl;
+    }
 }
