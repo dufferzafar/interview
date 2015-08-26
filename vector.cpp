@@ -6,7 +6,7 @@ using namespace std;
 // Print Generic Vectors
 template <typename T>
 void print_vector(const vector<T>& v) {
-    for (typename vector<T>::const_iterator it = v.begin(); it != v.end(); ++it) {
+    for (typeof(v.begin()) it = v.begin(); it != v.end(); ++it) {
         cout << *it;
 
         if (it != v.end() - 1)
