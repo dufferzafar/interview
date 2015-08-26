@@ -18,7 +18,8 @@ void print_vector(const vector<T>& v) {
 int main() {
 
     // Initialized with characters
-    vector<char> v1 = {'S', 'H', 'A', 'D', 'A', 'B'};
+    const char characters[] = {'S', 'H', 'A', 'D', 'A', 'B'};
+    vector<char> v1(characters, characters+6);
     print_vector(v1);
 
     // Filled with squares
