@@ -4,6 +4,9 @@
 #include <cstdlib>      // for rand
 #include <algorithm>
 
+#define all(v) v.begin(), v.end()
+#define rall(v) v.rbegin(), v.rend()
+
 using namespace std;
 
 // Print Generic Vectors
@@ -33,9 +36,9 @@ int main() {
     cout << "Vector of random integers: "; print_vector(v2); cout << endl;
 
     // Sorting
-    sort(v2.begin(), v2.end());
+    sort(all(v2));
     cout << "Vector of random integers (sorted - ascending): "; print_vector(v2); cout << endl;
 
-    sort(v2.rbegin(), v2.rend());
+    sort(rall(v2));
     cout << "Vector of random integers (sorted - descending): "; print_vector(v2); cout << endl;
 }
