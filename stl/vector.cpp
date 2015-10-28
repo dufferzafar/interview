@@ -33,7 +33,6 @@ int main() {
     for (int i = 0; i < 10; ++i) {
         v2.push_back(rand() % 1000);
     }
-    cout << "Vector of random integers: "; print_vector(v2); cout << endl;
 
     // Sorting
     sort(all(v2));
@@ -51,5 +50,12 @@ int main() {
         cout << "Found!" << endl;
     } else {
         cout << "Not Found!" << endl;
+    }
+
+    // Matrix
+    vector< vector<int> matrix;
+    vector<int> row;
+    for (int i = 0; i < 10; ++i) {
+        v3.push_back(rand() % 1000);
     }
 }
