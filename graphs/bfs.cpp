@@ -7,24 +7,14 @@
 #include <cstdio>   // stdin redirection
 #include <utility>  // pair
 
+#include "util.h"
+
 using namespace std;
 
 // Some typdefs for easy coding
 typedef int item;
 typedef vector<item> row;
 typedef vector<row> matrix;
-
-void print_graph(matrix adj) {
-    for (int i = 1; i < adj.size(); ++i)
-    {
-        cout << i << " -> ";
-        for(row::iterator it = adj[i].begin(); it != adj[i].end(); ++it)
-        {
-            cout << *it << " | ";
-        }
-        cout << endl;
-    }
-}
 
 int main() {
     // Uncomment this to take input from stdin
