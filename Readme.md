@@ -1,8 +1,24 @@
 
-# ++
+# interview-prep
 
-Brushing up my C++ skills, especially the Standard Template Library stuff.
+Code & notes written while preparing for CS Interviews @ IIT D.
 
-## Usage
+## content
+
+* `graphs/`
+    - Standard Graph related algorithms
+
+* `notes/`
+    - Notes from various books & other interview related repos
+
+* `questions/`
+    - Misc. "competitive programming" questions
+
+* `stl/`
+    - C++ code written to learn the Standard Library
+
+## Running the code
+
+Each folder has a Makefile that allows 
 
 `make program=vector`
