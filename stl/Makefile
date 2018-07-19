@@ -1,10 +1,1 @@
-default: clean compile run
-
-clean:
-	@rm -f *.out
-
-compile:
-	@g++ $(program).cpp -o $(program).out
-
-run:
-	@./$(program).out
+/home/dufferzafar/dev/interview-prep/Makefile
