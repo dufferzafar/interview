@@ -9,47 +9,64 @@
 // What other namespaces exist?
 using namespace std;
 
-// Per-node information
+// TODO: Generalize the string type with a template?
 struct Node {
     string data;
-
     Node* next;
 };
 
 class SinglyLinkedList {
-    Node* head; Node* tail;
+    Node* head = nullptr;
+    Node* tail = nullptr;
+
+    size_t _size = 0;
+
+public:
+
+    size_t size() {
+        return _size;
+    }
+
+    void print(const Node* p) {
+        for(; p != nullptr; p = p->next) {
+
+            cout << '"' << p->data << '"'
+                 << (p->next != nullptr ? " -> " : "\n");
+        }
+    }
+
+    void print() {
+        print(head);
+    }
+
+    // TODO: Should return a pointer to the newly added node?
+    void push_back(string data) {
+        // new is required to ensure that node
+        // isn't freed as soon as the function exits
+        Node* n = new Node{data, nullptr};
+
+        _size++;
+
+        if (head == nullptr)
+            head = n;
+        else
+            tail->next = n;
+
+        tail = n;
+    }
+
 };
 
-void print_list(const Node* p) {
-    for(; p != NULL; p = p->next) {
-        cout << '"' << p->data << '"'
-             << (p->next != NULL ? " -> " : "\n");
-    };
-}
 
 int main() {
 
-    // Initialize the list in reverse order
-    Node n3{ "Zafar",  NULL };
-    Node n2{ "duffer", &n3  };
-    Node n1{ "Shadab", &n2  };
+    SinglyLinkedList LL;
 
-    print_list(&n1);
+    LL.push_back("Shadab");
+    LL.push_back("duffer");
+    LL.push_back("Zafar");
 
-    // Initialize the list in forward order
-    // Node n1, n2, n3;
-    n1 = (Node){ "Shadab", &n2 };
-    n2 = (Node){ "duffer", &n3 };
-    n3 = (Node){ "Zafar", NULL };
-
-    print_list(&n1);
-
-    // Initialize with only head pointer
-    Node* head = new Node{ "Shadab" };
-    head->next = new Node{ "duffer" };
-    head->next->next = new Node{ "Zafar" };
-
-    print_list(head);
+    LL.print();
 
     return 0;
 }
