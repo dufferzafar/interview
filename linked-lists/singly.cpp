@@ -16,12 +16,25 @@ struct Node {
 };
 
 class SinglyLinkedList {
-    Node* head = nullptr;
-    Node* tail = nullptr;
+    Node* head;
+    Node* tail;
 
-    size_t _size = 0;
+    size_t _size;
 
 public:
+
+    // What is this pattern called?
+    // Bo Qian explained it in some video
+    // Bitcoin's codebase also uses these SetNull type functions
+    void SetNull() {
+        head = nullptr;
+        tail = nullptr;
+        _size = 0;
+    }
+
+    SinglyLinkedList() {
+        SetNull();
+    }
 
     size_t size() {
         return _size;
