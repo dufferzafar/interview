@@ -15,6 +15,9 @@
 			[
 				"_Help/**"
 			],
+			"file_exclude_patterns": [
+				"*.out"
+			],
 			"path": "."
 		}
 	]
