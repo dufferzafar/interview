@@ -43,6 +43,9 @@ public:
             push_back(s);
     }
 
+    // /////////////////////////////////////////////////////////
+
+    // TODO: const reference?
     size_t size() {
         return _size;
     }
@@ -75,21 +78,32 @@ public:
         tail = n;
     }
 
+    void push_front(string data) {
+        Node* n = new Node{data, nullptr};
+
+        _size++;
+
+        if (head == nullptr) {
+            tail = n;
+        } else {
+            n->next = head;
+        }
+
+        head = n;
+    }
+
 };
 
 
 int main() {
 
-    SinglyLinkedList LL;
+    SinglyLinkedList LL {"Shadab", "duffer", "Zafar"};
 
-    LL.push_back("Shadab");
-    LL.push_back("duffer");
-    LL.push_back("Zafar");
+    LL.push_front("Shadab");
+    LL.push_front("duffer");
+    LL.push_front("Zafar");
 
     LL.print();
-
-    SinglyLinkedList LL2 {"Shadab", "duffer", "Zafar"};
-    LL2.print();
 
     return 0;
 }
