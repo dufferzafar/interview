@@ -49,7 +49,6 @@
     - Interface
         + `insert(k, v)`, `find(k)`, `delete(k)`
 
-
 ## Trees
 
 * Construction
@@ -88,15 +87,26 @@
     - `heapify`
     - `heap_sort`
 
-* **Self-balancing**
+* **Self-balancing Trees**
 
-* **Trie**
+    - **Treaps**
 
-* **Treaps**
+    - **AVL Trees**
 
-* **Skip Lists**
+    - **Red Black Trees**
+
+    - **B-Trees**
+
+    - **Splay Trees**
+
+    - **Skip Lists**
+
 
 * **Segment Trees**
+
+* **Tries**
+
+* Disjoint-Set, Union-Find
 
 ## Graphs
 
@@ -128,14 +138,16 @@
         + Strongly Connected Components
         + Bipartite Detection
 
-* Shortest Paths
+* **Shortest Paths**
     - Dijkstra
     - Bellman Ford
     - Floyd Warshall
 
-* Minimum Spanning Tree
+* **Minimum Spanning Tree**
     - Prim
     - Kruskal
+
+* Network Flows
 
 * Max Flow
 * Min Cut
@@ -149,3 +161,4 @@
         + Dijkstra
         + A\*
 
+    - [Advanced Data Structures Course - MIT 2012](https://www.youtube.com/playlist?list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf)
