@@ -12,10 +12,25 @@ using namespace std;
 // Print Generic Vectors
 template <typename T>
 void print_vector(const vector<T>& v) {
-    for (typeof(v.begin()) it = v.begin(); it != v.end(); ++it) {
+
+    // Range-for:
+    // ~~~~~~~~~~
+    //
+    // Can quickly iterate over all elements of container
+    // but has no index information
+    //
+    // for ( auto &i : v )
+    //     cout << i << ", ";
+
+    // Iterators:
+    // ~~~~~~~~~~
+    //
+    // Iterators provide some index info
+
+    for (auto it = begin(v); it != end(v); ++it) {
         cout << *it;
 
-        if (it != v.end() - 1)
+        if (it != end(v) - 1)
             cout << ", ";
     }
     cout << endl;
@@ -53,9 +68,11 @@ int main() {
     }
 
     // Matrix
-    vector< vector<int> matrix;
-    vector<int> row;
+    // vector< vector<int> > matrix;
+    vector<vector<int> > matrix(10, vector<int>(10));
     for (int i = 0; i < 10; ++i) {
-        v3.push_back(rand() % 1000);
+        for (int j = 0; j < 10; ++j) {
+            matrix[i][j] = rand() % 1000;
+        }
     }
 }
