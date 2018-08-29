@@ -1,7 +1,3 @@
-ifndef p
-$(error Specify a program to build)
-endif
-
 EXE = $(patsubst %.cpp,%.out,$(patsubst %.c,%.out,$(p)))
 
 default: clean compile run
@@ -15,7 +11,10 @@ lint:
 
 # -fdiagnostics-color=always
 compile:
-	@g++ -Wall $(p) -o $(EXE)
+	@clang++ -Wall $(p) -o $(EXE)
 
-run:
+run: compile
 	@./$(EXE)
+
+# TODO: Bash function
+# cpp <*.cpp> <input_file>
