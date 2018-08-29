@@ -36,6 +36,13 @@ public:
         SetNull();
     }
 
+    SinglyLinkedList(initializer_list<string> init) {
+        SetNull();
+
+        for (auto &s : init)
+            push_back(s);
+    }
+
     size_t size() {
         return _size;
     }
@@ -80,6 +87,9 @@ int main() {
     LL.push_back("Zafar");
 
     LL.print();
+
+    SinglyLinkedList LL2 {"Shadab", "duffer", "Zafar"};
+    LL2.print();
 
     return 0;
 }
