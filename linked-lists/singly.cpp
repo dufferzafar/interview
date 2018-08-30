@@ -71,6 +71,14 @@ public:
         return out;
     }
 
+    friend istream& operator>>(istream& inp, SinglyLinkedList<T>& LL) {
+        string word;
+        while(inp >> word)
+            LL.push_back(word);
+
+        return inp;
+    }
+
     ////////////////////////////////////////////////////////////
 
     // TODO: Should return a pointer to the newly added node?
@@ -109,10 +117,10 @@ public:
 int main() {
 
     // Test constructor, push_back
-    SinglyLinkedList<string> LL {"Shadab", "duffer", "Zafar"};
+    SinglyLinkedList<string> LL {"push", "back"};
 
     // Test push_front
-    LL.push_front("Shadab"); LL.push_front("duffer"); LL.push_front("Zafar");
+    LL.push_front("in"); LL.push_front("reverse");
 
     // Test print, operator<< with iostream
     cout << LL;
@@ -125,6 +133,13 @@ int main() {
     // Test template
     SinglyLinkedList<int> LL_int {1,2,3,4,5};
     cout << LL_int;
+
+    SinglyLinkedList<string> LL_stream;
+    istringstream inp("this is a line");
+
+    // Test operator>> with istringstream
+    inp >> LL_stream;
+    cout << LL_stream;
 
     return 0;
 }
