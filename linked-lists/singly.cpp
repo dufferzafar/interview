@@ -51,16 +51,22 @@ public:
         return _size;
     }
 
-    void print(const Node<T>* p) {
+    // TODO: public access to head, tail pointers?
+
+    // Notice that 'const' is placed at the end to denote
+    // that this function won't modify state?
+    void print(ostream& out, const Node<T>* p) const {
         for(; p != nullptr; p = p->next) {
 
-            cout << '"' << p->data << '"'
+            out << '"' << p->data << '"'
                  << (p->next != nullptr ? " -> " : "\n");
         }
     }
 
-    void print() {
-        print(head);
+    // TODO: Generalize ostream to work with stringstream
+    friend ostream& operator<<(ostream& out, const SinglyLinkedList<T>& LL) {
+        LL.print(out, LL.head);
+        return out;
     }
 
     ////////////////////////////////////////////////////////////
