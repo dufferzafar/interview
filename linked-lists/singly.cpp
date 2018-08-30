@@ -66,11 +66,13 @@ public:
     }
 
     // ostream is a superclass of iostream & ostringstream
+    // LL is marked 'const' to ensure it won't be modified
     friend ostream& operator<<(ostream& out, const SinglyLinkedList<T>& LL) {
         LL.print(out, LL.head);
         return out;
     }
 
+    // LL is *not* marked 'const' as it has to modified
     friend istream& operator>>(istream& inp, SinglyLinkedList<T>& LL) {
         string word;
         while(inp >> word)
@@ -122,24 +124,25 @@ int main() {
     // Test push_front
     LL.push_front("in"); LL.push_front("reverse");
 
-    // Test print, operator<< with iostream
+    // Test print, operator<< with ostream
     cout << LL;
 
     // Test operator<< with ostringstream
     ostringstream os;
-    os << LL;
-    cout << os.str();
+    os << LL; cout << os.str();
 
-    // Test template
+    // Test template with int
     SinglyLinkedList<int> LL_int {1,2,3,4,5};
     cout << LL_int;
 
+    // Test operator>> with istringstream
     SinglyLinkedList<string> LL_stream;
     istringstream inp("this is a line");
+    inp >> LL_stream; cout << LL_stream;
 
-    // Test operator>> with istringstream
-    inp >> LL_stream;
-    cout << LL_stream;
+    // Test operator>> with istream
+    // Enter a line and press ctrl+d (for EOF)
+    // cin >> LL_stream; cout << LL_stream;
 
     return 0;
 }
