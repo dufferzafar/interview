@@ -9,15 +9,16 @@
 // What other namespaces exist?
 using namespace std;
 
-// TODO: Generalize the string type with a template?
+template <typename T>
 struct Node {
-    string data;
+    T data;
     Node* next;
 };
 
+template <typename T>
 class SinglyLinkedList {
-    Node* head;
-    Node* tail;
+    Node<T>* head;
+    Node<T>* tail;
 
     size_t _size;
 
@@ -36,7 +37,7 @@ public:
         SetNull();
     }
 
-    SinglyLinkedList(initializer_list<string> init) {
+    SinglyLinkedList(initializer_list<T> init) {
         SetNull();
 
         for (auto &s : init)
@@ -50,7 +51,7 @@ public:
         return _size;
     }
 
-    void print(const Node* p) {
+    void print(const Node<T>* p) {
         for(; p != nullptr; p = p->next) {
 
             cout << '"' << p->data << '"'
@@ -63,10 +64,10 @@ public:
     }
 
     // TODO: Should return a pointer to the newly added node?
-    void push_back(string data) {
+    void push_back(T data) {
         // new is required to ensure that node
         // isn't freed as soon as the function exits
-        Node* n = new Node{data, nullptr};
+        Node<T>* n = new Node<T>{data, nullptr};
 
         _size++;
 
@@ -78,8 +79,8 @@ public:
         tail = n;
     }
 
-    void push_front(string data) {
-        Node* n = new Node{data, nullptr};
+    void push_front(T data) {
+        Node<T>* n = new Node<T>{data, nullptr};
 
         _size++;
 
@@ -97,13 +98,17 @@ public:
 
 int main() {
 
-    SinglyLinkedList LL {"Shadab", "duffer", "Zafar"};
+    // Implicitly uses the push_back methods
+    SinglyLinkedList<string> LL {"Shadab", "duffer", "Zafar"};
 
     LL.push_front("Shadab");
     LL.push_front("duffer");
     LL.push_front("Zafar");
 
     LL.print();
+
+    SinglyLinkedList<int> LL_int {1,2,3,4,5};
+    LL_int.print();
 
     return 0;
 }
