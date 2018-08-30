@@ -2,8 +2,10 @@
  * Singly linked lists
  */
 
-#include <iostream>
-#include <sstream>
+#include <iostream>         // cin, cout
+#include <sstream>          // istringstream, ostringstream
+
+#include <stdexcept>        // underflow_error
 
 #include <string>
 
@@ -72,6 +74,8 @@ public:
         return out;
     }
 
+    ////////////////////////////////////////////////////////////
+
     // LL is *not* marked 'const' as it has to modified
     friend istream& operator>>(istream& inp, SinglyLinkedList<T>& LL) {
         string word;
@@ -80,8 +84,6 @@ public:
 
         return inp;
     }
-
-    ////////////////////////////////////////////////////////////
 
     // TODO: Should return a pointer to the newly added node?
     void push_back(T data) {
@@ -111,6 +113,23 @@ public:
         }
 
         head = n;
+    }
+
+    ////////////////////////////////////////////////////////////
+
+    // Should return data of the node being popped?
+    void pop_front() {
+        if (!head)
+            throw underflow_error("List is empty");
+    }
+
+    void pop_back() {
+        Node<T>* p = head;
+
+        while(p != tail)   // Alternative: for(; p != tail; p = p->next);
+            p = p->next;   // but p can't be declared in loop, because scope
+
+        tail = p;
     }
 
 };
@@ -143,6 +162,9 @@ int main() {
     // Test operator>> with istream
     // Enter a line and press ctrl+d (for EOF)
     // cin >> LL_stream; cout << LL_stream;
+
+    SinglyLinkedList<char> LL_c;
+    LL_c.pop_front();
 
     return 0;
 }
