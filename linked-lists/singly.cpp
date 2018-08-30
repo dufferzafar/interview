@@ -22,8 +22,6 @@ class SinglyLinkedList {
 
     size_t _size;
 
-public:
-
     // What is this pattern called?
     // Bo Qian explained it in some video
     // Bitcoin's codebase also uses these SetNull type functions
@@ -32,6 +30,8 @@ public:
         tail = nullptr;
         _size = 0;
     }
+
+public:
 
     SinglyLinkedList() {
         SetNull();
@@ -44,7 +44,7 @@ public:
             push_back(s);
     }
 
-    // /////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
 
     // TODO: const reference?
     size_t size() {
@@ -62,6 +62,8 @@ public:
     void print() {
         print(head);
     }
+
+    ////////////////////////////////////////////////////////////
 
     // TODO: Should return a pointer to the newly added node?
     void push_back(T data) {
@@ -100,15 +102,11 @@ int main() {
 
     // Implicitly uses the push_back methods
     SinglyLinkedList<string> LL {"Shadab", "duffer", "Zafar"};
-
-    LL.push_front("Shadab");
-    LL.push_front("duffer");
-    LL.push_front("Zafar");
-
-    LL.print();
+    LL.push_front("Shadab"); LL.push_front("duffer"); LL.push_front("Zafar");
+    cout << LL;
 
     SinglyLinkedList<int> LL_int {1,2,3,4,5};
-    LL_int.print();
+    cout << LL_int;
 
     return 0;
 }
