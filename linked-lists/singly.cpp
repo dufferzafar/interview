@@ -3,6 +3,8 @@
  */
 
 #include <iostream>
+#include <sstream>
+
 #include <string>
 
 
@@ -63,7 +65,7 @@ public:
         }
     }
 
-    // TODO: Generalize ostream to work with stringstream
+    // ostream is a superclass of iostream & ostringstream
     friend ostream& operator<<(ostream& out, const SinglyLinkedList<T>& LL) {
         LL.print(out, LL.head);
         return out;
@@ -106,11 +108,21 @@ public:
 
 int main() {
 
-    // Implicitly uses the push_back methods
+    // Test constructor, push_back
     SinglyLinkedList<string> LL {"Shadab", "duffer", "Zafar"};
+
+    // Test push_front
     LL.push_front("Shadab"); LL.push_front("duffer"); LL.push_front("Zafar");
+
+    // Test print, operator<< with iostream
     cout << LL;
 
+    // Test operator<< with ostringstream
+    ostringstream os;
+    os << LL;
+    cout << os.str();
+
+    // Test template
     SinglyLinkedList<int> LL_int {1,2,3,4,5};
     cout << LL_int;
 
