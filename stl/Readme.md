@@ -1,6 +1,9 @@
 
 # Standard Template Library
 
+* Bo Qian's Videos
+    - [STL](https://www.youtube.com/watch?v=Vc1RyqWFbiA&list=PL5jc9xFGsL8G3y3ywuFSvOuNm3GjBwdkb)
+    - [Advanced STL](https://www.youtube.com/watch?v=c_SucEr4iPw&list=PL5jc9xFGsL8E_BJAbOw_DH6nWDxKtzBPA)
 
 ## Containers
 

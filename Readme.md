@@ -11,6 +11,9 @@ Code & notes written while preparing for CS Interviews @ IIT D.
 * `notes/`
     - Notes from various books & other interview related repos
 
+* `recursion/`
+    - Programs involving recursion: mostly backtracking
+
 * `questions/`
     - Misc. "competitive programming" questions
 
@@ -21,4 +24,4 @@ Code & notes written while preparing for CS Interviews @ IIT D.
 
 Each folder has a Makefile that allows 
 
-`make program=vector`
+`make p=vector`
