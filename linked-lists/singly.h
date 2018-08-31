@@ -20,6 +20,7 @@ struct Node {
 
 template <typename T>
 class SinglyLinkedList {
+public:
     Node<T>* head;
     Node<T>* tail;
 
@@ -34,8 +35,6 @@ class SinglyLinkedList {
         _size = 0;
     }
 
-public:
-
     SinglyLinkedList() {
         SetNull();
     }
@@ -48,15 +47,6 @@ public:
     }
 
     ////////////////////////////////////////////////////////////
-
-    // TODO: const reference?
-    size_t size() {
-        return _size;
-    }
-
-    Node<T>* headptr() {
-        return head;
-    }
 
     // TODO: public access to head, tail pointers?
 
