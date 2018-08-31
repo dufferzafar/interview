@@ -5,27 +5,23 @@
 
 * Doubly
 
-* with tail pointer
-* without
-
 ## Operations
 
+* Insertion
+    - `push_front()`
+    - `push_back()`
 
-* `insert()`
+* Deletion
+    - `pop_front()`
+    - `pop_back()`
 
+* Load from `istream`
 
-* `delete()`
-
-
-* `load()`
-    - From an `istringstream`
-    - or a `fstream`
-
-* `dump()`
-    - Dump to a stream
-
+* Dump to `ostream`
 
 ## Algorithms / Questions
+
+_All of these in seprate files that use the LL from header file._
 
 * Reversal
 
