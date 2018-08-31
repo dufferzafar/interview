@@ -14,6 +14,8 @@
  *    1. Length                :  What if length is equal? What if cycles?
  *    2. Hash data             :  What if two nodes have same data?
  *    3. Hash pointer address  :  Exposes some implementation detail
+ *
+ *    4. Two iterating pointers
  */
 
 #include <iostream>
@@ -63,6 +65,39 @@ int main() {
     return 0;
 }
 
+///////////////////////////////////////////////////////////////
+
+/**
+ * @brief      Use two iterating pointers
+ *
+ *             Solution copied from the discussion section @ hackerrank
+ *
+ *             http://stackoverflow.com/a/14956113
+ *
+ * @return     Data of merge node
+ */
+template <typename T>
+int find_merge_node_two_pointers(Node<T>* head1, Node<T>* head2) {
+    auto h1 = head1;
+    auto h2 = head2;
+
+    while(h1 != h2) {
+
+        // If you reach the end of one list
+        // start at the beginning of the other one
+        if (h1->next)
+            h1 = h1->next;
+        else
+            h1 = head2;
+
+        if(h2->next)
+            h2 = h2->next;
+        else
+            h2 = head1;
+    }
+
+    return h2->data;
+}
 ///////////////////////////////////////////////////////////////
 
 /**
