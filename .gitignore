@@ -1,3 +1,8 @@
+
+# Old versions of the code; extracted from git history
+*.old.cpp
+*.old.h
+
 ###C++###
 
 # Compiled Object files
