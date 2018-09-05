@@ -47,3 +47,30 @@ See `stl/Readme.md`
     - https://github.com/fabiobento512/FRequest
 
     - https://gitlab.com/marcusbritanicus/NewBreeze
+
+## Code
+
+* Implementing an Iterator
+    - https://stackoverflow.com/questions/8054273/how-to-implement-an-stl-style-iterator-and-avoid-common-pitfalls
+
+* Folly's Source
+    - https://github.com/facebook/folly
+    
+* Range-v3
+
+## STL Implementations
+
+* What are the issues with the current STL containers?
+
+* Improvements over vector
+    - [`folly/FBVector.h`](https://github.com/facebook/folly/blob/master/folly/docs/FBVector.md)
+        + Has discussion 
+
+* `libc++`
+    - LLVM / Clang
+    - More recent, less backwards compatability
+
+* `libstdc++`
+    - GCC
+
+* Still looking for an implementation that's aimed at readability
