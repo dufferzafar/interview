@@ -43,16 +43,15 @@ vector<string> k_largest(int k, istringstream& iss) {
     string word;
     while(iss >> word) {
 
-        if (heap.size() == k) {
+        // The heap isn't full yet
+        if (heap.size() < k) {
+            heap.push(word);
+            continue;
+        }
 
-            // Only insert if word is actually large
-            if ( word.length() > heap.top().length() ) {
-                heap.pop(); // extract_min
-                heap.push(word);
-            }
-            // else skip word
-
-        } else {
+        // Only insert if word is actually large
+        if ( word.length() > heap.top().length() ) {
+            heap.pop(); // extract_min
             heap.push(word);
         }
 
@@ -60,8 +59,10 @@ vector<string> k_largest(int k, istringstream& iss) {
         //      At any iteration, the heap contains k-largest strings seen so far.
     }
 
-    // A k-sized vector
-    vector<string> largest;
+    // Convert the heap into an array so it can be sent back
+    // Heaps don't support standard iterators
+    // so, it needs to be destroyed :/
+    vector<string> largest(k);
     while ( !heap.empty() ) {
         largest.push_back(heap.top());
         heap.pop();
