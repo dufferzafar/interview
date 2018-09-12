@@ -4,8 +4,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 template <typename T>
 struct Node {
     T data;
@@ -26,8 +24,9 @@ public:
         SetNull();
     }
 
-    void inorder(ostream& out, Node<T>* root) const {
-        if (!root) {return;}
+    // In-order traversal of the tree
+    void inorder(std::ostream& out, Node<T>* root) const {
+        if (!root) return;
 
         inorder(out, root->left);
 
@@ -49,8 +48,9 @@ public:
 
 
     // TODO: Function to construct a tree from an istream
+    // TODO: Function to insert a new node to the tree? (BST property)
 
-    friend ostream& operator<<(ostream& out, const BinaryTree<T>& BT) {
+    friend std::ostream& operator<<(std::ostream& out, const BinaryTree<T>& BT) {
         BT.inorder(out, BT.root);
         return out;
     }
