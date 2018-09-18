@@ -104,9 +104,17 @@
 
 * **Segment Trees**
 
+    - Building one from static array
+    - Inserting a new item
+    - Range updates
+    
+    - _Why is query O(log n)?_
+
 * **Tries**
 
 * Disjoint-Set, Union-Find
+
+[What are the differences between segment trees interval trees binary indexed tree?](https://stackoverflow.com/questions/17466218/what-are-the-differences-between-segment-trees-interval-trees-binary-indexed-t/17504505)
 
 ## Graphs
 

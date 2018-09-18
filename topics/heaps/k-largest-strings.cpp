@@ -1,6 +1,8 @@
 /**
  * Find the k largest strings in a stream.
  *
+ * EPI problem: Heap Bootcamp
+ *
  * Finding k largest elements is isomorphic to
  * removing n-k smallest elements.
  *
@@ -51,8 +53,8 @@ vector<string> k_largest(int k, istringstream& iss) {
 
         // Only insert if word is actually large
         if ( word.length() > heap.top().length() ) {
-            heap.pop(); // extract_min
-            heap.push(word);
+            heap.pop();         // extract_min          O(log k)
+            heap.push(word);    // insert & heapify     O(log k)
         }
 
         // Loop invariant:

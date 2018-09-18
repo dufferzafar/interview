@@ -12,6 +12,9 @@
  *  2.
  *        At every node, apply the given definition of BST    O(n*n)
  *
+ *  3.
+ *        Send min, max with the recrusive calls
+ *
  */
 
 #include <iostream>
@@ -88,6 +91,19 @@ bool tree_is_BST_naive(Node<T>* root) {
             is_this_node_bst
             & tree_is_BST_naive(root->left)
             & tree_is_BST_naive(root->right);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Problem: Takes the min / max value with every call
+ *
+ * So only requires a single pass through the tree: O(n)
+ */
+template<typename T>
+bool tree_is_BST_improved(Node<T>* root) {
+
+    return false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

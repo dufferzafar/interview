@@ -4,6 +4,7 @@ using namespace std;
 
 vector<string> split_string(string);
 
+// Complete the getMinimumCost function below.
 int getMinimumCost(int k, vector<int> c) {
 
     // Our answer
@@ -25,12 +26,25 @@ int getMinimumCost(int k, vector<int> c) {
     // (but the cost is calculated in a weird way)
     // TODO: will need to do this in a loop - while (k < n)
     int remaining = n-k;
+    int buys = 2;
+    int start = 0;
 
     while(remaining > 0) {
-        cost += std::accumulate(begin(c), begin(c) + remaining, 0,
-                               [](int x, int y){ return x + 2*y; });
+
+        cout << "Cost: " << cost << "\n";
+
+        // This tries to buy the first k flowers again & again
+        // (is that correct?)
+        cost += std::accumulate(begin(c) + start, begin(c) + start + remaining, 0,
+                               [buys](int x, int y){
+                                   cout << "Buys: " << buys << "\n";
+                                   return x + buys*y;
+                               });
+
+        ++buys;
 
         remaining -= k;
+        start += k;
     }
 
     return cost;
