@@ -10,6 +10,7 @@
 #include <iostream>
 #include <algorithm>
 #include <queue>
+#include <unordered_map>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ class Graph {
     int nV;
 
     vvi adjmat;
+    unordered_map< int, vi > adjlist;
 
     public:
         Graph(int n) {
@@ -28,21 +30,19 @@ class Graph {
 
             // Initialise
             adjmat = vvi(n, vi(n, 0));
+
         }
 
         void add_edge(int u, int v) {
             // Undirected graphs have edges in both directions
             adjmat[u][v] = 1;
             adjmat[v][u] = 1;
+
+            adjlist[u].push_back(v);
+            adjlist[v].push_back(u);
         }
 
         vector<int> shortest_reach(int start) {
-
-            // Print adjacency matrix
-            // for (auto& vi : adjmat)  {
-            //     for(auto& i : vi) cerr << i << " ";
-            //     cerr << endl;
-            // }
 
             // This is the vector we have to build
             // It also acts as the "visited" array
@@ -54,8 +54,6 @@ class Graph {
             // Seed the queue with our starting point
             Q.push(start); reach[start] = 0;
 
-            // cerr << "Is Empty: " << Q.empty() << endl;
-
             // Go till all nodes reachable from start aren't reached
             while (!Q.empty()) {
                 int node = Q.front(); Q.pop();
@@ -65,18 +63,15 @@ class Graph {
                 // So a check here won't work
                 // if (reach[node] > 0)  continue;
 
-                // cerr << "Node: " << node+1 << endl;
-
                 // Push all neighbors of this node onto queue
                 // Mistake 4: Was iterating over neighbors via
-                for (int nxt = 0; nxt < nV; ++nxt) {
 
-                    // If there's no edge from node to nxt
-                    // Or nxt has already been reached before - skip!
-                    if (adjmat[node][nxt] == 0 || reach[nxt] > 0)
+                // for (int nxt = 0; nxt < nV; ++nxt) {
+                for (auto& nxt : adjlist[node]) {
+
+                    // If nxt has already been reached before - skip!
+                    if (reach[nxt] > 0)
                         continue;
-
-                    // cerr << "N: " << nxt+1 << endl;
 
                     // Reach calculation is being done here
                     // because this is where we know about the parent-child
