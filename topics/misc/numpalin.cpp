@@ -17,7 +17,7 @@ int main() {
     cin >> num;
 
     int num_digits  = floor(log10(num)) + 1;
-    // TODO: Will overflow easily. Better way?
+    // Will overflow easily. Better way?
     int div = pow(10, num_digits - 1);
 
     bool ispalin = true;

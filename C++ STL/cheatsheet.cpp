@@ -1,8 +1,6 @@
 /*
 This a header file that includes every standard library.
 You can use it to save time.
-NOTE: This header file may not be recognized by compilers
-other than gcc.
 */
 #include <bits/stdc++.h>
 
@@ -96,7 +94,7 @@ int main() {
 	cout<<"Vector at position "<<position<<" contains "<<numbers.at(position)<<endl;
 
 	// deleting a range of elements, first two elements
-	// NOTE: You may expect elements at 0, 1 and 2 to be deleted
+	// You may expect elements at 0, 1 and 2 to be deleted
 	// but index 2 is not inclusive.
 	numbers.erase(numbers.begin(), numbers.begin()+2);
 	cout << "The vector contains: ";
@@ -139,7 +137,7 @@ int main() {
 
 	itz = companies.find("Google");
 	cout << itz->second;
-        
+
         /* Check if key exists!
 
         if ( m.find("f") == m.end() ) {
@@ -232,7 +230,7 @@ int main() {
     p3.age = 19;
 
     // Initialize a min heap
-    // Note: We defined a comparator is_older in the beginning to
+    // We defined a comparator is_older in the beginning to
     // compare the ages of two person.
     priority_queue <struct Person, vector<struct Person>, is_older> mh;
     mh.push(p1);

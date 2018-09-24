@@ -19,7 +19,7 @@ int main() {
         return 1;
     }
 
-    // TODO: Quickly starts to "hang"; better way?
+    // Quickly starts to "hang"; better way?
 
     // Keep appending 1s till the answer becomes divisble by the given number.
     while (ans % num3) {

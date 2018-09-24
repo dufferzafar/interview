@@ -26,7 +26,7 @@
 using namespace std;
 
 
-// NOTE: I'm unable to cleanly explain the functionality
+// I'm unable to cleanly explain the functionality
 /**
  * @brief           Returns true if every node of root's tree
  *                  holds true for the boolean comparator
