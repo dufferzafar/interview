@@ -8,7 +8,8 @@ bool bsearch(vector<int>& vec, int goal) {
 
     int beg, mid, end;
 
-    beg = 0, end = vec.size();
+    // Note: Maintains a closed interval [b, l]
+    beg = 0, end = vec.size() - 1;
 
     while (beg <= end) {
         mid = beg + (end - beg) / 2;

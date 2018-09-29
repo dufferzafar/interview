@@ -78,8 +78,6 @@ http://www.cplusplus.com/reference/algorithm/
 
 * Pair
 
-
-
 ## Misc.
 
 * Iterators

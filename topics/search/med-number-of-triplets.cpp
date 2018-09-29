@@ -21,6 +21,9 @@ long triplets(vector<int> a, vector<int> b, vector<int> c) {
     // We need this so we can have O(1) index calculation
     // sets won't work as std::distance on sets is O(n)
     a.assign(begin(sa), end(sa));
+
+    // a = vector<int>(begin(sa), end(sa));
+
     b.assign(begin(sb), end(sb));
     c.assign(begin(sc), end(sc));
 

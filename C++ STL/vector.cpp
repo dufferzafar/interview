@@ -57,15 +57,15 @@ int main() {
     cout << "Vector of random integers (sorted - descending): "; print_vector(v2); cout << endl;
 
     // Check whether an element exists
-    int number;
-    cout << "Enter a number to find: ";
-    cin >> number;
+    // int number;
+    // cout << "Enter a number to find: ";
+    // cin >> number;
 
-    if (find(all(v2), number) != v2.end()) {
-        cout << "Found!" << endl;
-    } else {
-        cout << "Not Found!" << endl;
-    }
+    // if (find(all(v2), number) != v2.end()) {
+    //     cout << "Found!" << endl;
+    // } else {
+    //     cout << "Not Found!" << endl;
+    // }
 
     // Matrix
     // vector< vector<int> > matrix;
@@ -75,4 +75,18 @@ int main() {
             matrix[i][j] = rand() % 1000;
         }
     }
+
+    // Test negative offsets
+    vector<int> rotor {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    // Negative offset from begin doesn't make much sense
+    // cout << *(itr.begin() - 1);
+
+    cout << "Rotor: "; for(auto& e : rotor) cout << e << " "; cout << endl;
+
+    int K = 3;
+    std::rotate(begin(rotor), end(rotor) - K, end(rotor));
+
+    cout << "Rotor: "; for(auto& e : rotor) cout << e << " "; cout << endl;
+
 }
