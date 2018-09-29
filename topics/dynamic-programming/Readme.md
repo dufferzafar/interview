@@ -1,6 +1,7 @@
 
 # Dynamic Programming
 
+TODO: Add Anki cards for these
 
 ## Problems
 
@@ -30,17 +31,42 @@
     - Doubts
         + `LIS(s) == LCS(s, sorted(s))` ?
 
+* Longest Common Subsequence
+
+    - O(n^2) space and time
+
 * Longest Palindromic Subsequence
 
-    - 
+    - O(n^2) - Like LCS
+        + Can be reduced to O(1) space
+
+    - Manacher's Algorithm
+        + O(n)
+        + Tricky
+
+* Maximum Subset Sum
+    
+    - O(n) space & time
+
+    - Kadane's Algorithm
+        + O(n) time but O(1) space
+
+    - Variants
+        + Only consider non-adjacent elements
 
 
-## Links
+
+## Resources
 
 * Types of DP
     - http://codeforces.com/blog/entry/325
 
-* DP Optimizations
+* DP on Trees
+    - https://codeforces.com/blog/entry/20935
+
+* DP Optimizations (advanced)
     - http://codeforces.com/blog/entry/8219
+
+* Geeks for Geeks Questions
 
 * Topcoder Tutorials
