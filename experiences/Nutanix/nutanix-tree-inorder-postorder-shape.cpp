@@ -10,44 +10,6 @@ struct Node {
     struct Node* right;
 };
 
-/*
-// Was first trying to
-
-Node* build_tree(string inord, string::iterator ibeg, string::iterator iend,
-                 string postord, string::iterator pbeg, string::iterator pend)
-{
-    // Basecase?
-    // if (!inord.length())
-    // if (ibeg >= iend)
-    if ((iend - ibeg) <= 0)
-        return nullptr;
-
-    Node* root = new Node();
-
-    // int last = (postord.end() - 1) - postord.begin();
-    // root->data = postord[last];
-
-    root->data = postord.back();
-
-    // Find location in inorder
-    auto ditr = std::find(begin(inord), end(inord), root->data);
-    // int dloc = ditr - inord.begin();
-
-    // cerr << "New indices: " << 0 << "," << dloc - 1 << " "
-    //      << 0 << "," << last - 1 << endl;
-
-    // cerr << root->data << endl;
-
-    root->left = build_tree(inord, ibeg, ditr - 1,
-                            postord, pbeg, pend - 1);
-
-    root->right = build_tree(inord, ditr + 1, iend,
-                             postord, pbeg, pend - 1);
-
-    return root;
-}
-*/
-
 // Passing in a nullptr at the beginning
 // Could be improved by passing indices
 Node* build_tree(string inord, string postord)
@@ -237,9 +199,6 @@ int main() {
     while(N--) {
 
         cin >> inord >> postord;
-
-        // Node* root = build_tree(inord, begin(inord), end(inord),
-        //                         postord, begin(postord), end(postord));
 
         Node* root = build_tree(inord, postord);
 
