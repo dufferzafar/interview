@@ -1,10 +1,10 @@
 
-# Experiences
+My experiences of placement tests & interviews of various companies.
 
-_Thursday 27 September 2018 08:44:47 PM IST IST_
+You might also want to have a look at other similar repos:
 
-## Nutanix
+* [by @hthuwal](https://github.com/hthuwal/iitd-placements-experience)
+    - From IIT Delhi
 
-1. 
-
-2. 
+* [by @iCHAIT](https://github.com/iCHAIT/interview-exp)
+    - From NUS Singapore
