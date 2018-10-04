@@ -10,27 +10,9 @@ using namespace std;
 
 // typedef struct TrieNode TrieNode;
 struct TrieNode {
-
-    vector< TrieNode* > children;
-
-    // At no point do we store what "character" a node represents
-    // that is understood from the implicit ordering
-    // 'a' is 0 and so on.
-
-    // The number of words in Trie having this prefix
-    int prefixes;
-
-    // Signifies whether a word ends at this node or not
-    bool word_end;
-
-    // Resize children upon being constructed
-    // all nodes would be nullptrs!
-    TrieNode() {
-        children.resize(26);
-        prefixes = 0;
-        word_end = false;
-    }
-
+    map< char, TrieNode* > children;
+    int prefix_cnt = 0;
+    bool wordend = false;
 };
 
 class Trie {
@@ -47,12 +29,13 @@ public:
     void add(string word) {
         TrieNode* cur = this->root;
         for (char& ch : word) {
-            if (!cur->children[ch - 'a'])
-                cur->children[ch - 'a'] = new TrieNode();
+            if (!cur->children[ch])
+                cur->children[ch] = new TrieNode();
 
-            cur = cur->children[ch - 'a'];
-            cur->prefixes++;
+            cur = cur->children[ch];
+            cur->prefix_cnt++;
         }
+        cur->wordend = true;
     }
 
     int find(string prefix) {
@@ -61,8 +44,18 @@ public:
             cur = cur->children[ch - 'a'];
             if (!cur) return 0;
         }
-      return cur->prefixes;
+      return cur->prefix_cnt;
     }
+
+    // Print the entire tree
+    void _print(TrieNode* root, string word) {
+        if (!root->children.size() || root->wordend)
+            cerr << word << endl;
+        for (auto& child : root->children)
+            _print(child.second, word + child.first);
+    }
+
+    void print() { _print(this->root, ""); }
 };
 
 int main() {
@@ -90,6 +83,8 @@ int main() {
             cout << T.find(arg) << endl;
 
     }
+
+    T.print();
 
     return 0;
 }
