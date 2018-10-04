@@ -1,5 +1,8 @@
 #!/bin/python3
 
+# Question from HourRank 30
+# https://www.hackerrank.com/contests/hourrank-30/challenges/video-conference
+
 # class TrieNode: array of TrieNode*
 # dict(char -> dict)
 
