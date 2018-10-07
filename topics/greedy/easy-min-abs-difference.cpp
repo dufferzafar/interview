@@ -1,3 +1,6 @@
+/**
+ * https://www.hackerrank.com/challenges/minimum-absolute-difference-in-an-array
+ */
 #include <bits/stdc++.h>
 
 using namespace std;

@@ -49,14 +49,14 @@ int findShortest(int graph_nodes,
             vector< int > visited(graph_nodes, 0);
 
             // Single source shortest path between nodes of same color?
-            Q.push(start); distance[start] = 0;
-            while(!Q.empty()) {
-                int node = Q.front(); Q.pop();
-                for(auto& nxt : nbors[node]) {
-                    if (visited[nxt]) continue;
-                    visited[nxt] = true;
-                    distance[nxt] = 1 + distance[node];
-                    Q.push(nxt);
+            Q.push(start); distance[start] = 0;           // Start node is 0 distance away
+            while(!Q.empty()) {                           // Explore the entire component
+                int node = Q.front(); Q.pop();            // Pop a node
+                for(auto& nxt : nbors[node]) {            // Process neighbors
+                    if (visited[nxt]) continue;           // Skip if already processed
+                    visited[nxt] = true;                  // Mark processed
+                    distance[nxt] = 1 + distance[node];   // Compute distance
+                    Q.push(nxt);                          // Push neighbor
                 }
             }
 

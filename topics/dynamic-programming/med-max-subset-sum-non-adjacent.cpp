@@ -1,3 +1,9 @@
+/**
+ * https://www.hackerrank.com/challenges/max-array-sum
+ *
+ * A similar problem came in Cohesity's test
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;
