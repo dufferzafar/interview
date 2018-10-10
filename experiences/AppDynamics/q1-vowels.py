@@ -16,6 +16,7 @@ def difference_array(strArr, query):
 
     res = []
     for q in query:
+        # Blunder: Only considering single digit ranges :'(
         l = int(q[0]) - 1
         r = int(q[-1])
 
@@ -29,6 +30,7 @@ def bruteforce(strArr, query):
     res = []
 
     for q in query:
+        # Blunder: Only considering single digit ranges :'(
         l = int(q[0]) - 1
         r = int(q[-1])
 
@@ -45,25 +47,30 @@ def bruteforce(strArr, query):
 if __name__ == '__main__':
 
     S = ['aab', 'a', 'bcd', 'awe', 'bbbbbu']
-    Q = ['1-1', '1-4', '1-3', '2-5', '1-5']
+    Q = ['1-1', '2-2', '3-3', '4-4', '5-5', '1-4', '1-3', '2-5', '1-5']
 
     print(S)
     print(bruteforce(S, Q))
     print(difference_array(S, Q))
+
+    assert bruteforce(S, Q) == difference_array(S, Q)
 
     print()
 
-    S = ['yy', 'u', 'oe']
-    Q = ['1-3', '2-3', '3-3']
+    S = ['yy', 'a', 'ba', 'ee', 'oo', 'cc', 'u', 'oe']
+    Q = ['1-3', '2-3', '3-3', '2-2', '2-4', '3-5', '4-5', '5-5']
     print(S)
     print(bruteforce(S, Q))
     print(difference_array(S, Q))
+
+    assert bruteforce(S, Q) == difference_array(S, Q)
 
     print()
 
     S = ['aba', 'bcb', 'ece', 'aa', 'e']
-    Q = ['1-5', '2-5', '2-2']
+    Q = ['1-5', '2-5', '2-2', '3-3', '4-4', '5-5']
     print(S)
     print(bruteforce(S, Q))
     print(difference_array(S, Q))
 
+    assert bruteforce(S, Q) == difference_array(S, Q)
