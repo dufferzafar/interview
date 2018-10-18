@@ -16,6 +16,8 @@
 				"_Help/**"
 			],
 			"file_exclude_patterns": [
+				"topics/graphs/*.txt",
+				"topics/graphs/**/*.txt",
 				"*.out"
 			],
 			"path": "."

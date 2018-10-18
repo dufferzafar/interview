@@ -70,3 +70,10 @@ TODO: Add Anki cards for these
 * Geeks for Geeks Questions
 
 * Topcoder Tutorials
+
+* Bitmasks
+    - https://codeforces.com/blog/entry/18169
+    - http://codeforces.com/blog/entry/337
+    - https://www.hackerearth.com/practice/algorithms/dynamic-programming/bit-masking/tutorial/
+
+https://www.topcoder.com/community/competitive-programming/tutorials/assignment-problem-and-hungarian-algorithm/
