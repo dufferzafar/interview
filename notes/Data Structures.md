@@ -110,11 +110,11 @@
     
     - _Why is query O(log n)?_
 
+    - [What are the differences between segment trees interval trees binary indexed tree?](https://stackoverflow.com/questions/17466218/what-are-the-differences-between-segment-trees-interval-trees-binary-indexed-t/17504505)
+
 * **Tries**
 
-* Disjoint-Set, Union-Find
-
-[What are the differences between segment trees interval trees binary indexed tree?](https://stackoverflow.com/questions/17466218/what-are-the-differences-between-segment-trees-interval-trees-binary-indexed-t/17504505)
+* **Disjoint-Set, Union-Find**
 
 ## Graphs
 
@@ -170,3 +170,13 @@
         + A\*
 
     - [Advanced Data Structures Course - MIT 2012](https://www.youtube.com/playlist?list=PLUl4u3cNGP61hsJNdULdudlRL493b-XZf)
+
+## Others
+
+* Policy Based Data Structures in C++
+    - https://www.youtube.com/watch?v=7uvLZGkeDEg
+
+    - https://www.geeksforgeeks.org/policy-based-data-structures-g/
+    - https://www.geeksforgeeks.org/ordered-set-gnu-c-pbds/
+
+    - https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tutorial.html
