@@ -4,9 +4,12 @@
 using namespace std;
 
 int main() {
-    // Dummy String!
-    string s = "Shadab Zafar";
+
+    // substr usage
+    string s = "shadab";
     cout << s;
+    cout << s.substr(2, 2);
+
 
     // Standard string functions
 

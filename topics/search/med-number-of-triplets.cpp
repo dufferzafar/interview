@@ -1,3 +1,14 @@
+/**
+ *
+ * https://www.hackerrank.com/challenges/triple-sum/problem
+ *
+ Can be done in two lines of Python:
+
+ def triplets(a, b, c):
+    a, b, c = sorted(set(a)), sorted(set(b)), sorted(set(c))
+    return sum([bisect(a, x) * bisect(c, x) for x in reversed(b)])
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;
