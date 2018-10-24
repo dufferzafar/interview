@@ -178,3 +178,48 @@ public:
     }
 };
 ```
+
+## 118. Pascal's Triangle
+
+https://leetcode.com/problems/pascals-triangle/description/
+
+Pascal's triangle via nCr.
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> generate(int n) {
+        int dp[n+1][n+1];
+        
+        vector< vector<int> > ans;
+        vector<int> row;
+
+        // C(n, 0)
+        for(int i = 0; i <= n; ++i)
+            dp[i][0] = 1;
+
+        // C(0, r)
+        for(int i = 1; i <= n; ++i)
+            dp[0][i] = 0;
+
+        // Calculate nCr
+        for(int i = 1; i <= n; ++i) {
+            for(int j = 1; j <= n; ++j) {
+                dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+            }
+        }
+
+        // Lower diagonal matrix of nCr's dp is the Pascal's Triangle
+        for(int i = 0; i < n; ++i) {
+            row.clear();
+            
+            for(int j = 0; j <= i; ++j) 
+                row.push_back(dp[i][j]);
+            
+            ans.push_back(row);
+        }
+
+        return ans;
+    }
+};
+```
