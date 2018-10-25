@@ -31,3 +31,13 @@ _All of these in seprate files that use the LL from header file._
 
 * Cycle detection
     - Floyd's Hare & Tortoise
+
+    - Detect wheter a cycle exists
+    - Find the length of the cycle (no. of nodes)
+    - Remove the cycle (make the next pointer of the "last" node NULL)
+
+## Doubts
+
+* Why does the Floyd cycle detection algorithm works?
+
+* Why does the two pointer approach to find intersection node work?

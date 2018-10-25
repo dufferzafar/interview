@@ -31,3 +31,18 @@ There is no algorithm that has all of these properties, and so the choice of sor
     - Show that the initial condition (input order and key distribution) affects performance as much as the algorithm choice.
 
 * https://stackoverflow.com/questions/220044/which-sort-algorithm-works-best-on-mostly-sorted-data
+
+* [Which language uses which sort?](https://www.geeksforgeeks.org/know-sorting-algorithm-set-1-sorting-weapons-used-programming-languages/)
+    - Python - Timsort
+    - C++ - Introsort
+
+## Doubts
+
+* Why is Quicksort fast?
+* Why is Mergesort fast?
+
+* Peculiarities of each sorting algorithm
+    - When would you use each, compared to others
+
+* When would you choose Quick over Merge?
+    - or Heap?
