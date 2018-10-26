@@ -45,12 +45,11 @@ vi connectedCities(int n, int g, vi& org, vi& dst) {
 
     DSU dsu(n);
 
-    // O(n**2) bad loop!
-    for(int i = 0; i < n; ++i)
-        for(int j = 0; j < n; ++j) {
-            if (__gcd(i+1, j+1) > g) {
-                dsu.Union(i, j);
-            }
+    // Instead of checking GCD of all pair of numbers
+    // Just pick all multiples of g+1 to n
+    for(int i = g+1; i <= n; ++i)
+        for(int j = i; j <= n; j += i) {
+            dsu.Union(i-1, j-1);
         }
 
     vi res;
