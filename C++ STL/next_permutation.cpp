@@ -16,14 +16,25 @@ using namespace std;
 
 #define all(x) begin(x), end(x)
 
-void print_next_perm(string s) {
+void _print_next_perm(string s) {
 
-    if (is_sorted(all(s), std::greater<char>())) {
+    if (std::is_sorted(all(s), std::greater<char>())) {
         cout << "Not Possible" << endl;
     }
     else {
-        next_permutation(all(s));
+        std::next_permutation(all(s));
         cout << s << endl;
+    }
+
+}
+
+void print_next_perm(string s) {
+
+    if (std::next_permutation(all(s))) {
+        cout << s << endl;
+    }
+    else {
+        cout << "Not Possible" << endl;
     }
 
 }
@@ -32,13 +43,13 @@ void print_next_perm(string s) {
 void print_all_perms(string s) {
 
     // Get lexicographically smallest permutation
-    sort(all(s));
+    std::sort(all(s));
 
     do {
 
         cout << s << endl;
 
-    } while(next_permutation(all(s)));
+    } while(std::next_permutation(all(s)));
 
 }
 
