@@ -33,13 +33,12 @@ vector<int> LPS(string pat) {
         lps[q] = k;
     }
 
-    cout << "LPS: "; for (auto& l : lps) cout << l << " "; cout << endl;
+    // cout << "LPS: "; for (auto& l : lps) cout << l << " "; cout << endl;
 
     return lps;
-
 }
 
-string shortest_palindrome(string s) {
+string shortestPalindrome(string s) {
     int n = s.length();
 
     if (s.empty())
@@ -47,18 +46,13 @@ string shortest_palindrome(string s) {
     else if ((int) s.length() == 1)
         return s;
 
-    string rev = s;
-    reverse(begin(s), end(s));
+    string rev(s); reverse(begin(rev), end(rev));
 
     // Build LPS array byt appending reverse of string to the string itself
-    vector<int> lps = LPS(s + "#" + rev);
+    string trick = s + "#" + rev;
+    vector<int> lps = LPS(trick);
 
-    int skip = lps.back();
-
-    // cout << "skip " << skip << endl;
-
-    // Skip
-    string e = rev.substr(0, n-skip+1);
+    string e = rev.substr(0, n - lps.back());
 
     return e + s;
 }
