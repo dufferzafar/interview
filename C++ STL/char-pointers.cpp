@@ -45,6 +45,17 @@ char** vec2ch(int *cnt) {
     return ret;
 }
 
+vector<string> ch2vec(char** C, int cnt) {
+
+    vector<string> ret;
+
+    for(int i = 0; i < cnt; ++i) {
+        ret.push_back(std::string(C[i]));
+    }
+
+    return ret;
+}
+
 int main() {
 
     // Const needed because C++ 11
@@ -62,6 +73,9 @@ int main() {
     // Print
     for(int i = 0; i < cnt; ++i)
         cout << C[i] << endl;
+
+    for(auto str : ch2vec(C, cnt))
+        cout << str << endl;
 
     // Manually declaring a char*
     const char** str = new const char*[3];
