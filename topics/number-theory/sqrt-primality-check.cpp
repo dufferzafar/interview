@@ -1,11 +1,16 @@
+/**
+ * https://www.hackerrank.com/challenges/ctci-big-o/problem
+ */
 #include <bits/stdc++.h>
 
 using namespace std;
 
-// Complete the primality function below.
-string primality(int n) {
-    // Base cases
-    if (n == 1) return "Not prime";
+string primality_sqrt(int n) {
+
+    // Negative, Zero etc aren't defined to be prime
+    if (n <= 1) return "Not prime";
+
+    // Good guys
     if (n == 2 || n == 3) return "Prime";
 
     // All multiples of 2
