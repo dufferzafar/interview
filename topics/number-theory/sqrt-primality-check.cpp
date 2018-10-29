@@ -25,3 +25,40 @@ string primality_sqrt(int n) {
 
     return "Prime";
 }
+
+//////////////////////////////////////////////////////////////
+
+vector<bool> sieve;
+vector<int> primes;
+
+void build_sieve(int n) {
+    sieve.resize(n+1, true);
+    sieve[0] = sieve[1] = false;
+
+    for(int i = 2; i <= sqrt(n); ++i) {
+        if(sieve[i]) {
+            for(int j = i*i; j <= n; j += i)
+                sieve[j] = false;
+        }
+    }
+
+    for(int i = 2; i <= n; ++i) {
+        if (sieve[i])
+            primes.push_back(i);
+    }
+}
+
+
+string primality_sieve(int n) {
+    if (n == 1) return "Not prime";
+    if (n == 2 || n == 3) return "Prime";
+
+    // Build a sieve of size sqrt(n)
+    build_sieve(ceil(sqrt(n)));
+
+    for(auto p : primes)
+        if (n % p == 0)
+            return "Not prime";
+
+    return "Prime";
+}
