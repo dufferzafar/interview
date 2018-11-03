@@ -1,5 +1,13 @@
 EXE = $(patsubst %.cpp,%.out,$(patsubst %.c,%.out,$(p)))
 
+ifeq ($(suffix $(p)),.c)
+	CLANG = 'clang'
+	GCC = 'gcc'
+else
+	CLANG = 'clang++'
+	CLANG = 'g++'
+endif
+
 default: clean compile run
 
 clean:
@@ -10,10 +18,10 @@ lint:
 	@cppcheck -v --enable=style --std=c99 --error-exitcode=1 $(p)
 
 compile:
-	@clang++ -Wall $(p) -o $(EXE)
+	@$(CLANG) -g -Wall $(p) -o $(EXE)
 
 gcc:
-	@g++ -Wall $(p) -o $(EXE)
+	@$(GCC) -g -Wall $(p) -o $(EXE)
 
 run: compile
 	@./$(EXE)
