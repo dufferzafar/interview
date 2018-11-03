@@ -40,7 +40,8 @@ public:
         if (root->right) rtlp(root->right, npath, all);
         
     // Unchoose:
-        // Happens automatically when the stack unwinds?
+        // Since all our choices (paths) are kept on stack as a copy
+        // This happens automatically when the stack unwinds.
         
     }
     
@@ -74,20 +75,20 @@ public:
             return;
         }
         
-        // For all choices
+        // For all choices:
         for(int i = 0; i < (int) nums.size(); ++i) {
             
             int n = nums[i];
             auto idx = nums.begin() + i;
             
-            // Choose
+            // Choose:
             perm.push_back(n);
             nums.erase(idx);
             
-            // Explore
+            // Explore:
             permutations(nums, perm, all);
             
-            // Unchoose
+            // Unchoose:
             nums.insert(idx, n);
             perm.pop_back();
         }
@@ -121,10 +122,10 @@ public:
         // For all choices:
         for(int i = start; i < (int) nums.size(); ++i) 
         {
-            // Choose :
+            // Choose:
             swap(nums[i], nums[start]);
         
-            // Explore :
+            // Explore:
             permutations(nums, start + 1, all);
         
             // Unchoose:

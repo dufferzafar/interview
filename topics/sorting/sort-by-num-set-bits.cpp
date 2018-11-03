@@ -4,15 +4,16 @@ using namespace std;
 #define all(x) begin(x), end(x)
 
 typedef vector<int> vi;
+// typedef unsigned int uint;
 
 // Calculate number of set bits in an integer
-int nsb(int n) {
-    int b = 0;
+uint nsb(int n) {
+    uint cnt = 0;
     while(n) {
-        b += (n % 2);
+        cnt += n & 1;
         n /= 2;
     }
-    return b;
+    return cnt;
 }
 
 // Global state to keep track of NSBs in an integer

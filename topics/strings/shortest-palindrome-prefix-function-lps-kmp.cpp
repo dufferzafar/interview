@@ -17,13 +17,12 @@
 using namespace std;
 
 vector<int> LPS(string pat) {
-    int m = (int) pat.length();
+    int n = pat.length();
 
-    // int lps[m] = {0};
-    vector<int> lps(m, 0);
+    vector<int> lps(n, 0);
 
-    for (int k = 0, q = 1; q < m; ++q) {
-
+    for (int k = 0, q = 1; q < n; ++q)
+    {
         while (k > 0 && pat[k] != pat[q])
             k = lps[k-1];
 

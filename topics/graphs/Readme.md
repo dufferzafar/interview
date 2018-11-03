@@ -33,7 +33,9 @@
     - Floyd Warshall
 
 * Minimum Spanning Tree
+    
     - Prim
+    
     - Kruskal
 
 ## Problems

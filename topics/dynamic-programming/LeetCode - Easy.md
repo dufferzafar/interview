@@ -91,6 +91,8 @@ public:
 };
 ```
 
+**Kadane's Algorithm:**
+
 ```cpp
 class Solution {
 public:

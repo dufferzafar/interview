@@ -29,7 +29,7 @@
 
     * Couldn't even figure out a bruteforce!
 
-3. Uber Pool Game
+3. Uber Pool Game [Link](https://www.hackerrank.com/contests/w1/challenges/volleyball-match/editorial)
     * Realised it was DP too late
     * Did started coding the right thing, but time up!
 
