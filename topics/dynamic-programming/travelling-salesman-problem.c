@@ -72,7 +72,7 @@ int tsp_min_cost() {
                     // We look for a path that doesn't go through the node
                     // But ends at one of its negihbors
                     // This is the last edge of the path
-                    if (nbr != node && is_set(sub, node) && dp[sub ^ (1 << node)][nbr] != INT_MAX)
+                    if (nbr != node && is_set(sub, node) && is_set(sub, nbr) && dp[sub ^ (1 << node)][nbr] != INT_MAX)
                         dp[sub][node] = min(dp[sub][node], dp[sub ^ (1 << node)][nbr] + wt[nbr][node]);
                 }
             }
