@@ -2,7 +2,12 @@
 # Recursion
 
 * Full exhaustive search
+
+
 * Backtracking
+    - [Permutations](https://leetcode.com/problems/permutations/)
+
+
 
 ## Links
 

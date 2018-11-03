@@ -180,3 +180,6 @@
     - https://www.geeksforgeeks.org/ordered-set-gnu-c-pbds/
 
     - https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tutorial.html
+
+    - Applications
+        + [A faster alternative to unordered_map](https://codeforces.com/blog/entry/60737)

@@ -15,7 +15,7 @@
 
     - Questions
         + Number of Distinct substrings of a string
-        + Most frequent substring of length X
+        + Most frequent substring of length K
             * [SO Post](https://stackoverflow.com/questions/4484440/the-most-frequent-substring-of-length-x)
 
 * Prefix function
@@ -30,6 +30,8 @@
 ## Links
 
 * Hashing
+    - https://cp-algorithms.com/string/string-hashing.html
+    
     - [Rolling hash, Rabin Karp, palindromes, rsync and others](https://www.infoarena.ro/blog/rolling-hash)
     - [Caclulate hash of substring using prefix hashes](https://codeforces.com/blog/entry/12919)
     - [String Hashing + Binary Search Questions](https://codeforces.com/blog/entry/12388)

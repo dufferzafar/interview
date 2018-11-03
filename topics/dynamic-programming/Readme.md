@@ -54,7 +54,15 @@ TODO: Add Anki cards for these
     - Variants
         + Only consider non-adjacent elements
 
+* Hamiltonian Paths / TSP etc.
 
+    - Floyd Warshall + Bitmask DP?
+        + https://www.spoj.com/problems/CLEANRBT/
+
+* Subset Sums
+    - https://leetcode.com/problems/partition-to-k-equal-sum-subsets/description/
+    - https://leetcode.com/problems/subarray-sum-equals-k/description/
+    - https://leetcode.com/problems/partition-equal-subset-sum/description/
 
 ## Resources
 
@@ -72,8 +80,17 @@ TODO: Add Anki cards for these
 * Topcoder Tutorials
 
 * Bitmasks
+
+    http://codeforces.com/blog/entry/47764
+
+    - DP with Bitmasks on Graphs
+        + http://codeforces.com/blog/entry/337
+
+    - TSP
+        + https://www.geeksforgeeks.org/bitmasking-dynamic-programming-set-2-tsp/
+
     - https://codeforces.com/blog/entry/18169
-    - http://codeforces.com/blog/entry/337
+
     - https://www.hackerearth.com/practice/algorithms/dynamic-programming/bit-masking/tutorial/
 
 https://www.topcoder.com/community/competitive-programming/tutorials/assignment-problem-and-hungarian-algorithm/
