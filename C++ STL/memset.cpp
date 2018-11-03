@@ -18,6 +18,10 @@ int main() {
     memset(dp, 1, sizeof(dp));
     for(int i = 0; i < n; ++i) cout << dp[i] << " "; cout << endl;
 
+    // Chak Fai's trick to ensure that two undefined DPs don't overflow
+    memset(dp, 62, sizeof(dp));
+    for(int i = 0; i < n; ++i) cout << dp[i] << " "; cout << endl;
+
     cout << "----" << endl;
 
     memset(dp, INT_MIN, sizeof(dp));
