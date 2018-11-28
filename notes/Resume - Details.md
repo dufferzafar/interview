@@ -423,7 +423,7 @@ transactions
 ### P2P cryptocurrency simulator 
 
 * Problem
-    - Implement a DHT to store keys
+    - Implement a DHT to store keypairs - (node ip, port)
     - Two phase commit protocol to do Txn
     - Sender broadcasts committed Txns
     - Receiver verifies the signatures 
@@ -520,6 +520,10 @@ transactions
 
 * Installation of HDFS & Spark
     - Various issues on the cluster
+    - First we were trying out MapReduce / YARN but we couldn't set it up
+    - Then Harish setup standalone Spark on his laptop
+    - Once that worked, we did it on Baadal as well
+    - YARN wasn't required - Spark handled it all
 
 * Dataset: GHTorrent
     - 60 GB compressed - 225 GB uncompressed
@@ -530,15 +534,22 @@ transactions
 
     - Preprocessing
         + xsv tool to remove columns we weren't interested in
+        + We did this locally
+            * Only because we didn't have permanent access to Baadal
+            * So we shortened it first and then uploaded (via LAN etc.)
         + After preprocessing: 55 GB
 
 * Analysis
     - Users: 20 million
     - Exponential growth
         + from 2008 to 2017
+        + `users.select(F.year('created_at').alias('year')).groupBy(year).count()`
+        + `SELECT COUNT(*) FROM USERS GROUP BY YEAR('created_at')`
     - New users per year-month
-    - User distribution 
+        + `GROUP BY YEAR('created_at'), MONTH('created_at')`
+    - User distribution
         + Global, India
+        + `GROUP BY 'country_code'`
     - Organizations
         + Global, Indian
         + Parameters
@@ -546,19 +557,30 @@ transactions
             * Followers per employee
             * Stars per employee
     - Users at IITs
+        + `company.name.startswith("IIT | INDIAN").groupBy('company').count()`
     - Activities
         + Commit patterns of users
             * Number of comits - Time of day vs Day of Week
+            * People had varying punchcards - some work in day / night etc.
         + Community participation
-            * No. of projects vs % community participation
+            * No. of projects vs % Community participation
+                - Normal curve
+            * `SELECT ceiling(100 * commits_by_others / total_commits) as community_part, COUNT(*) as num_repos GROUP BY project_id`
             * Most had 0%
                 - Showed bus factor - 1
         + Programming language popularity
             * by Code size!
                 - Lame metric
+                - We were trying to see if Java will come on top
+                     * Because it is verbose
+                     * But, C came on top, followed by JS, Java, PHP, Python, Ruby
+            * `project_languages` table
 
 * __TODO: List all queries__
     - Schema of the tables
+        + Users, Followers, Projects, Stars, 
+        + Project Language, Project Members, 
+        + Commits, Issues, Pull Requests
     - Larger queries run
 
 ### Machine Learning Algorithms
