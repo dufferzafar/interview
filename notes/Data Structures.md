@@ -89,17 +89,17 @@
 
 * **Self-balancing Trees**
 
-    - **Treaps**
-
     - **AVL Trees**
 
     - **Red Black Trees**
 
-    - **B-Trees**
+    - **B/B+-Trees**
+
+    - **Skip Lists**
 
     - **Splay Trees**
 
-    - **Skip Lists**
+    - **Treaps**
 
 
 * **Segment Trees**

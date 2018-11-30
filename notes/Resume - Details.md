@@ -1,6 +1,98 @@
 
 # Resume - Details
 
+## Courses
+
+* Advanced Data Structure
+    - Revision of B.Tech material with a focus on proofs
+        + Graphs
+    - Heaps
+        + Binomial Heap
+    - Amortized Analysis
+    - Quick Sort & Family
+    - Greedy framework
+        + Matroid Theory
+    - Union Find
+    - Skip Lists
+    - KD Trees
+    - Convex Hulls
+    - NP Completeness & Reductions
+
+* Introduction to Logic & Functional Programming
+    - Abstract mathematics
+    - Ocaml - functional paradigm
+        + Recursive structures - trees etc.
+        + `map, fold`
+        + Pattern matching
+    - Assignments
+        + Representing sets with list
+        + Propositional logic and conversions
+        + Proof trees & natural deduction
+
+* High Speed Networks
+    - Digital cash
+    - Cryptography Basics
+    - Blocks
+        + Merkle tree
+    - Possion processes
+    - Attacks on Blockchains
+        + 51%
+        + Arbitrary Target
+        + Block Discarding
+        + Slefish Mining
+    - Smart Contracts
+    - Limitations of Bitcoin
+    - Proof Of Stake
+        + Problems
+
+    - Fruitchain
+    - Bitcoin NG
+
+    - Consensus
+        + Proof of Work
+        + Paxos, RAFT
+        + PBFT & Byzantine Fault Tolerance
+        + Zyzzyva
+
+    - Hyperledger Fabric
+    - Algorand
+
+    - Lightning Networks
+        + Bitcoin scalability
+    - Truebit & Compute intensive smart contracts
+
+* Network & System Security
+    - Stream Ciphers
+        + RC4, LFSR
+
+    - Block ciphers
+        + DES
+        + AES
+
+    - Public-key cryptography:
+        + Diffie Hellman
+        + RSA
+        + ElGamal
+        + Elliptic Curves
+
+    - Hash functions
+        + MD5
+        + SHA 1, 2
+        
+    - Message Authentication Codes
+    - Digital signatures
+
+    - Key management
+        + PKI and Certification
+
+    - Applications to network security:
+        + Wi-Fi security
+        + Kerberos-based authentication
+        + VPN, or IPSEC
+        + Transport-layer authentication
+        + Email systems
+
+
 ## Work Experience
 
 ### Adobe
@@ -195,8 +287,10 @@
 
 * Testbed to run simulations
 
-    - Involving multiple nodes
-    - Cluster of 3 physical nodes
+    - Involving multiple bitcoin nodes
+
+    - Cluster of 3 virtual machines
+        + Each of which running 50 bitcoin daemons
 
     - __TODO: Class Diagram__
         + Node
@@ -211,32 +305,94 @@
         + Goal
         + MEMS Accelerometer
             * __TODO: Working of Sensors__
+            * Sensing mass suspended with springs
+            * Gets displaced due to forces
+                - which could be acoustic vibrations
+
+        + Human audible frequencies
+            * 20Hz to 20kHz
+
         + Sensors on an Android Phone
+            * Rate limited by the Kernel: 200Hz
+            * Explored changing the kernel itself?
+                - but user phones won't have that kernel
+            * Raise no alarm - permission popup
+
         + Recent update in Android Pie
 
     - Literature
+
         + Gyrophone
+            * Rate limited data
+            * ML: SVM etc.
+                - Speaker, Gender Identification
+            * Multiple phones
+
         + Walnut Attack
+            * Requires resonant frequencies
+            * Can completely control the sensor
+
         + PIN Attack
+            * Figure out which key was pressed by 
+            * No acoustics
+            * Touch events on screen
+            * Followed by ML: KNN, GNB, MLP, RF
+            * Found that combination of sensors work best
     
     - Exploit in Browsers
+        + Chrome rate limits: 60Hz
+        + Firefox is still: 200Hz
 
     - Sensor Tile Kit
+        + ST Microelectronics
+            * Promises an accelerometer with 6000Hz rate
+
+        + Most of the time on the project was spent here?
+
         + Couldn't succeed in gathering data 
             * At maximum rate
-        + Recording both sensor & microphone
+        + Recording both sensor & microphone failed
 
     - Android App
         + Limited data rate: 200Hz
         + Stored all data
-        + Read code?
+
+            * Sensors: `timestamp, x, y, z`
+                - `import android.hardware.Sensor`
+                - `SensorManager, Sensor.TYPE_ACCELEROMETER`
+                - `registerListener, SensorEventListener, onSensorChanged`
+                - `SENSOR_DELAY_FASTEST`
+
+            * Audio: M4A
+                - `import android.media.MediaRecorder`
+                - `Source: MIC, OutputFormat: MPEG_4, AudioEncoder: AAC`
+
+    - Experiment
+        + Let the android application run in background
+        + Then use a beeper application, connected to a speaker
+            * To generate single frequency tones
+        + Noise
+            * Should've been done in an anachronic chamber? 
 
     - Analysis
         + Convert M4A to WAV
+            * via FFMpeg
+            * Read using `scipy.wavfile`
+
         + Plots
             * Time-Amplitude
+                - The normal plot usually associated with sound waves?
+
             * Frequency-Amplitude
+                - Found via FFT
+                - Break a wave into its individual frequency components
+                    + To find if there is a single freq tone
+
             * Time-Frequency
+
+        + Modules
+            * numpy, pandas, matplotlib
+            * scipy: fftpack, signal, wavfile
 
 * __TODO: Signal processing concepts__
     - Nyquist sampling
@@ -262,6 +418,7 @@
 
     - Priority queue of events
         + prioritized by scheduled time
+        + `queue.PriorityQueue`
 
     - 4 types of events: 
         + Transaction Generate
@@ -592,10 +749,35 @@ transactions
 
 ### Network Security Algorithms
 
-* DES
-* RSA
+* Data Encryption Standard
+    - Initial Permutation
+    - 16 Rounds of feistel
+    - Key Schedule / Expansion for round keys
+    - Feistel
+        + Permute
+        + XOR
+        + Substitute
+        + Permute
+
+* Rivest Shamir Adleman
+    - Generate Key Pair
+        + `n, p, q, phi`
+    - Encrypt / Decrypt
+
 * Document time-stamping authority
+    - Calculate file hash
+    - Send to TSA
+    - Append timestamp
+    - Encrypt with TSA's private key
+    - Now, it can be verified by anyone having TSA's public key
+
 * Certification authority
+    - Clients communicate with CA to get certificate
+    - Clients can then talk to each other
+
+    - CA needs to be trusted by both
+        + and they should have hardcoded its key
+        + Browsers do this too!
 
 ### Open Source - GitHub projects
 
