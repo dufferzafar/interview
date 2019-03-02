@@ -15,3 +15,5 @@ Each folder has a Makefile that allows you to run the progrm
 
 * [Chaitu's Gists]
     - [All Google Questions - LeetCode](https://gist.github.com/iCHAIT/e4ae42f645aa336facff4737c8d32d9c)
+
+* [Jay Shah's Interview Experiences](https://github.com/jayshah19949596/CodingInterviews)
