@@ -1,0 +1,54 @@
+$ clang++ -std=c++11 ConcurrentQueue.cpp -o queue.o
+$ ./queue.o
+
+Running task 0
+Running task 4492
+[1]    52347 segmentation fault  ./queue.o
+
+$ lldb ./queue.o
+
+(lldb) target create "./queue.o"
+Current executable set to '/Users/szafar/Downloads/dev/interview-prep/assignments/imc/queue.o' (arm64).
+
+(lldb) bt all
+error: invalid process
+
+(lldb) run
+Process 52582 launched: '/Users/szafar/Downloads/dev/interview-prep/assignments/imc/queue.o' (arm64)
+Running task 0
+Running task 21218
+Process 52582 stopped
+* thread #2, stop reason = EXC_BAD_ACCESS (code=1, address=0x476000000000000)
+    frame #0: 0x0000000100003cd0 queue.o`std::__1::__function::__value_func<void ()>::operator()() const + 44
+queue.o`std::__1::__function::__value_func<void ()>::operator():
+->  0x100003cd0 <+44>: ldr    x8, [x0]
+    0x100003cd4 <+48>: ldr    x8, [x8, #0x30]
+    0x100003cd8 <+52>: blr    x8
+    0x100003cdc <+56>: ldp    x29, x30, [sp, #0x10]
+
+(lldb) bt all
+
+  thread #1
+    frame #0: 0x0000000183f7362c
+    frame #1: 0x0000000183ee7738
+    frame #2: 0x0000000100002c3c queue.o`main + 108
+    frame #3: 0x0000000183c310e0
+
+* thread #2, stop reason = EXC_BAD_ACCESS (code=1, address=0x476000000000000)
+  * frame #0: 0x0000000100003cd0 queue.o`std::__1::__function::__value_func<void ()>::operator()() const + 44
+    frame #1: 0x0000000100003ba0 queue.o`std::__1::function<void ()>::operator()() const + 24
+    frame #2: 0x0000000100003a80 queue.o`main::$_0::operator()() const + 68
+    frame #3: 0x00000001000039f4 queue.o`decltype(static_cast<main::$_0>(fp)()) std::__1::__invoke<main::$_0>(main::$_0&&) + 24
+    frame #4: 0x0000000100003990 queue.o`void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct> >, main::$_0>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct> >, main::$_0>&, std::__1::__tuple_indices<>) + 32
+    frame #5: 0x0000000100003170 queue.o`void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct> >, main::$_0> >(void*) + 76
+    frame #6: 0x0000000183fb2034
+
+* thread #3
+    frame #0: 0x0000000100007418 queue.o`ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::getCount() const + 12
+    frame #1: 0x00000001000073ac queue.o`ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::busyWaitForPush() + 36
+    frame #2: 0x000000010000496c queue.o`ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&) + 32
+    frame #3: 0x00000001000048f4 queue.o`main::$_1::operator()() const + 96
+    frame #4: 0x000000010000484c queue.o`decltype(static_cast<main::$_1>(fp)()) std::__1::__invoke<main::$_1>(main::$_1&&) + 24
+    frame #5: 0x0000000100004828 queue.o`void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct> >, main::$_1>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct> >, main::$_1>&, std::__1::__tuple_indices<>) + 32
+    frame #6: 0x00000001000044ac queue.o`void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct> >, main::$_1> >(void*) + 76
+    frame #7: 0x0000000183fb2034
