@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 // Should each hand be a separate class?
 // So we can have a common interface for all hands?
+// https://stackoverflow.com/questions/57346118/enum-class-constructor-c-how-to-pass-specific-value
 enum class Hand { Rock = 1, Paper, Scissors };
 
 std::string to_string(Hand c) {
@@ -19,6 +21,29 @@ std::string to_string(Hand c) {
   }
   }
 }
+
+template<typename HandT>
+class ClassicRules {
+public:
+  inline static const std::unordered_map<HandT, HandT> rules = {
+      {HandT::Rock, HandT::Scissors},
+      {HandT::Paper, HandT::Rock},
+      {HandT::Scissors, HandT::Paper}};
+};
+
+template<typename HandT, typename RulesT>
+class Judge {
+public:
+  uint judge(HandT h1, HandT h2) {
+    if (h1 == h2) {
+      return 0;
+    } else if (RulesT::rules.at(h1) == h2) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
+};
 
 // This is the strategy design pattern implemented via templates
 template <typename ChoiceStrategyT> class Player {
@@ -67,20 +92,21 @@ public:
 
 // https://stackoverflow.com/a/28206799
 // This prints underlying integers!
-template <typename T>
-std::ostream &operator<<(
-    typename std::enable_if<std::is_enum<T>::value, std::ostream>::type &stream,
-    const T &e) {
-  return stream << static_cast<typename std::underlying_type<T>::type>(e);
-}
+// template <typename T>
+// std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value,
+// std::ostream>::type& stream, const T& e)
+// {
+//     return stream << static_cast<typename std::underlying_type<T>::type>(e);
+// }
 
 // Could be templated on the console as that could be replaced
 // with perhaps a GUI or a network interface!
 // What if we have more than 2 players?
-template <typename Player1T, typename Player2T> class Game {
+template <typename Player1T, typename Player2T, typename JudgeT> class Game {
 private:
   Player1T player1;
   Player2T player2;
+  JudgeT judge;
 
 public:
   void play() {
@@ -90,14 +116,11 @@ public:
     std::cout << "Player 1 chose: " << to_string(h1) << std::endl;
     std::cout << "Player 2 chose: " << to_string(h2) << std::endl;
 
-    if (h1 == h2) {
-      std::cout << "It's a tie!" << std::endl;
-    } else if ((h1 == Hand::Rock && h2 == Hand::Scissors) ||
-               (h1 == Hand::Paper && h2 == Hand::Rock) ||
-               (h1 == Hand::Scissors && h2 == Hand::Paper)) {
-      std::cout << "Player 1 wins!" << std::endl;
+    uint result = judge.judge(h1, h2);
+    if (result == 0) {
+      std::cout << "It's a draw!" << std::endl;
     } else {
-      std::cout << "Player 2 wins!" << std::endl;
+      std::cout << "Player " << result << " wins!" << std::endl;
     }
   }
 };
@@ -107,14 +130,17 @@ int main() {
   using BotRandomPlayer = Player<RandomChoiceStrategy>;
   using BotNaivePlayer = Player<NaiveChoiceStrategy>;
 
+  // Follows classic rules of Rock, Paper, Scissors
+  using ClassicJudge = Judge<Hand, ClassicRules<Hand>>;
+
   // Bot vs Bot games
-  Game<BotNaivePlayer, BotNaivePlayer>().play();
-  Game<BotNaivePlayer, BotRandomPlayer>().play();
-  Game<BotRandomPlayer, BotRandomPlayer>().play();
+  Game<BotNaivePlayer, BotNaivePlayer, ClassicJudge>().play();
+  Game<BotNaivePlayer, BotRandomPlayer, ClassicJudge>().play();
+  Game<BotRandomPlayer, BotRandomPlayer, ClassicJudge>().play();
 
   // Human vs Bot games
-  Game<HumanPlayer, BotRandomPlayer>().play();
-  Game<HumanPlayer, HumanPlayer>().play();
+  Game<HumanPlayer, BotRandomPlayer, ClassicJudge>().play();
+  Game<HumanPlayer, HumanPlayer, ClassicJudge>().play();
 
   return 0;
 }
