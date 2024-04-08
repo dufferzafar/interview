@@ -18,9 +18,17 @@ Write a Program that plays Paper-Scissors-Rock (sic) between the computer and a 
 
 You should be able to play the game n times before the program exits.
 
-## Design
+## Todo
 
-```mermaid
-```
+* Add test.cpp which shows how easy it is to test each individual part of the system
+    * Shorter hands, weirder rules
+    * Multiple bot/bot games
 
+* Create a class for the Hand and keep rules together?
+    * Only 1/2/3 should be possible!
+
+<!-- 
 ## Implementation
+
+* I've tried to design the game so that 
+    * follow Single Responsibility Principle -->

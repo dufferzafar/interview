@@ -1,31 +1,26 @@
-#include <vector>
-
-#include "player.h"
 #include "game.h"
+#include "player.h"
 
 int main() {
-  // Follows classic rules of Rock, Paper, Scissors
-  using ClassicJudge = Judge<Hand, ClassicRules<Hand>>;
-  using RockyJudge = Judge<Hand, RockWinsRules<Hand>>;
+  std::cout << "Welcome to Rock, Paper, Scissors! "
+            << "You will be playing against a Computer.\n"
+            << "How many rounds do you want to play?\n";
+  int rounds;
+  std::cin >> rounds;
 
+  // Two players: Human vs Computer
   using namespace Player;
-  auto nb1 = NaiveBot("NaiveBot1");
-  auto nb2 = NaiveBot("NaiveBot2");
-  auto rb1 = RandomBot("RandomBot1");
-  auto rb2 = RandomBot("RandomBot2");
+  auto c = RandomBot("Computer");
   auto h = Human("Shadab");
-  auto z = Human("Zafar");
 
-  std::vector<Player::Variant> players = {nb1, nb2, rb1, rb2, h, z};
+  // A Judge that follows classic rules of Rock, Paper, Scissors
+  using ClassicJudge = Judge<Hand, ClassicRules<Hand>>;
 
-  // Bot vs Bot games
-  Game<NaiveBot, NaiveBot, ClassicJudge>(nb1, nb2).play();
-  Game<NaiveBot, RandomBot, ClassicJudge>(nb1, rb2).play();
-  Game<RandomBot, RandomBot, ClassicJudge>(rb1, rb2).play();
+  Game<Human, RandomBot, ClassicJudge>(h, c).play(rounds);
 
-  // Human vs Bot games
-  Game<Human, RandomBot, RockyJudge>(h, rb1).play();
-  Game<Human, Human, RockyJudge>(h, z).play();
+  // To play against another human:
+  // auto z = Human("Zafar");
+  // Game<Human, Human, ClassicJudge>(h, z).play();
 
   return 0;
 }

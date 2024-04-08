@@ -6,22 +6,26 @@ Defines classes for Hand, Rules & Judge!
 #include <sys/types.h>
 #include <unordered_map>
 
+#include <cassert>
+#include <iostream>
+
 // Should each hand be a separate class?
 // So we can have a common interface for all hands?
-// https://stackoverflow.com/questions/57346118/enum-class-constructor-c-how-to-pass-specific-value
-enum class Hand { Rock = 1, Paper = 2, Scissors = 3, SIZE = 3 };
+enum class Hand { Rock = 1, Paper = 2, Scissors = 3, SIZE = 4 };
 
-// Hand should be a class so this representation can stay close to it?
+// Or hand could be a class that mimics an enum but this representation can stay close to it?
 inline std::string to_string(Hand c) {
   switch (c) {
   case Hand::Rock:
-    return "Rock";
+    return "Rock 🪨";
   case Hand::Paper:
-    return "Paper";
+    return "Paper 📰";
   case Hand::Scissors:
-    return "Scissors";
+    return "Scissors ✂️";
   default: {
-    // assert(0);
+    // TODO: What is the right thing to do in this case?
+    // TODO: This should be handled in the Hand() constructor so it possible to create a Hand that's not in the enum!
+    assert(0);
     return "";
   }
   }
@@ -38,15 +42,6 @@ public:
       {HandT::Scissors, /* beats */ HandT::Paper}};
 };
 
-// Just for example, a ruleset where Rock always wins
-template <typename HandT>
-class RockWinsRules {
-public:
-  inline static const std::unordered_multimap<HandT, HandT> rules = {
-      {HandT::Rock, /* beats */ HandT::Paper},
-      {HandT::Rock, /* beats */ HandT::Scissors}};
-};
-
 template <typename HandT, typename RulesT>
 class Judge {
 public:
@@ -54,11 +49,12 @@ public:
     if (h1 == h2) {
       return 0;
     }
-    auto it = RulesT::rules.find(h1);
-    if (it != RulesT::rules.end() && it->second == h2) {
-      return 1;
-    } else {
-      return 2;
+    auto range = RulesT::rules.equal_range(h1);
+    for (auto it = range.first; it != range.second; ++it) {
+      if (it->second == h2) {
+        return 1;
+      }
     }
+    return 2;
   }
 };

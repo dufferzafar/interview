@@ -1,12 +1,16 @@
 CC:=clang++
 CFLAGS:=-Wall -Wextra -Werror -Wpedantic -Wno-newline-eof
 
+.PHONY: test
+test:
+	$(CC) $(CFLAGS) -std=c++17 -o test.o test.cpp
+	./test.o
+
 .PHONY: game
 game:
-	$(CC) $(CFLAGS) -std=c++17 -o game.o game.cpp
+	$(CC) $(CFLAGS) -std=c++17 -o game.o main.cpp
 	./game.o
 
-# LLVM, GNU, Google, Chromium, Microsoft, Mozilla, WebKit.
 .PHONE: fmt
 fmt:
 	clang-format -i *.cpp
