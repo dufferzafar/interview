@@ -1,0 +1,134 @@
+❯ make tsan
+/usr/bin/clang++ -g -std=c++11 ConcurrentQueue.cpp -fsanitize=thread -fPIE -o queue.o -pthread
+./queue.o
+
+queue.o(52970,0x1dfd6d000) malloc: nano zone abandoned due to inability to reserve vm space.
+==================
+WARNING: ThreadSanitizer: data race (pid=52970)
+  Write of size 8 at 0x00016d3fa970 by thread T2 (mutexes: write M25):
+    #0 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&) ConcurrentQueue.cpp:72 (queue.o:arm64+0x10000746c)
+    #1 main::$_1::operator()() const ConcurrentQueue.cpp:111 (queue.o:arm64+0x100007280)
+    #2 decltype(static_cast<main::$_1>(fp)()) std::__1::__invoke<main::$_1>(main::$_1&&) type_traits:3918 (queue.o:arm64+0x10000713c)
+    #3 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x1000070e8)
+    #4 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>>(void*) thread:298 (queue.o:arm64+0x100006ab4)
+
+  Previous read of size 8 at 0x00016d3fa970 by thread T1:
+    [failed to restore the stack]
+
+  Location is stack of main thread.
+
+  Mutex M25 (0x00016d3fa928) created at:
+    #0 pthread_mutex_lock <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x41dc0)
+    #1 std::__1::mutex::lock() <null>:52469992 (libc++.1.dylib:arm64e+0x162fc)
+    #2 std::__1::lock_guard<std::__1::mutex>::lock_guard(std::__1::mutex&) __mutex_base:90 (queue.o:arm64+0x100005b2c)
+    #3 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&) ConcurrentQueue.cpp:70 (queue.o:arm64+0x1000073f0)
+    #4 main::$_1::operator()() const ConcurrentQueue.cpp:111 (queue.o:arm64+0x100007280)
+    #5 decltype(static_cast<main::$_1>(fp)()) std::__1::__invoke<main::$_1>(main::$_1&&) type_traits:3918 (queue.o:arm64+0x10000713c)
+    #6 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x1000070e8)
+    #7 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>>(void*) thread:298 (queue.o:arm64+0x100006ab4)
+
+  Thread T2 (tid=5538123, running) created by main thread at:
+    #0 pthread_create <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x2fda8)
+    #1 std::__1::__libcpp_thread_create(_opaque_pthread_t**, void* (*)(void*), void*) __threading_support:421 (queue.o:arm64+0x1000045d8)
+    #2 std::__1::thread::thread<main::$_1, void>(main::$_1&&) thread:314 (queue.o:arm64+0x1000067e4)
+    #3 std::__1::thread::thread<main::$_1, void>(main::$_1&&) thread:306 (queue.o:arm64+0x100003fbc)
+    #4 main ConcurrentQueue.cpp:104 (queue.o:arm64+0x100003de4)
+
+  Thread T1 (tid=5538122, running) created by main thread at:
+    #0 pthread_create <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x2fda8)
+    #1 std::__1::__libcpp_thread_create(_opaque_pthread_t**, void* (*)(void*), void*) __threading_support:421 (queue.o:arm64+0x1000045d8)
+    #2 std::__1::thread::thread<main::$_0, void>(main::$_0&&) thread:314 (queue.o:arm64+0x100004284)
+    #3 std::__1::thread::thread<main::$_0, void>(main::$_0&&) thread:306 (queue.o:arm64+0x100003f50)
+    #4 main ConcurrentQueue.cpp:94 (queue.o:arm64+0x100003dcc)
+
+SUMMARY: ThreadSanitizer: data race ConcurrentQueue.cpp:72 in ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&)
+==================
+==================
+WARNING: ThreadSanitizer: data race (pid=52970)
+  Write of size 8 at 0x00016d3fa968 by thread T1 (mutexes: write M25):
+    #0 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::pop() ConcurrentQueue.cpp:43 (queue.o:arm64+0x1000059f4)
+    #1 main::$_0::operator()() const ConcurrentQueue.cpp:97 (queue.o:arm64+0x10000582c)
+    #2 decltype(static_cast<main::$_0>(fp)()) std::__1::__invoke<main::$_0>(main::$_0&&) type_traits:3918 (queue.o:arm64+0x100005714)
+    #3 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_0>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_0>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x100005610)
+    #4 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_0>>(void*) thread:298 (queue.o:arm64+0x100004670)
+
+  Previous read of size 8 at 0x00016d3fa968 by thread T2:
+    #0 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::getCount() const ConcurrentQueue.cpp:52 (queue.o:arm64+0x10000af04)
+    #1 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::busyWaitForPush() ConcurrentQueue.cpp:57 (queue.o:arm64+0x10000ae2c)
+    #2 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&) ConcurrentQueue.cpp:66 (queue.o:arm64+0x100007374)
+    #3 main::$_1::operator()() const ConcurrentQueue.cpp:111 (queue.o:arm64+0x100007280)
+    #4 decltype(static_cast<main::$_1>(fp)()) std::__1::__invoke<main::$_1>(main::$_1&&) type_traits:3918 (queue.o:arm64+0x10000713c)
+    #5 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x1000070e8)
+    #6 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>>(void*) thread:298 (queue.o:arm64+0x100006ab4)
+
+  Location is stack of main thread.
+
+  Mutex M25 (0x00016d3fa928) created at:
+    #0 pthread_mutex_lock <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x41dc0)
+    #1 std::__1::mutex::lock() <null>:52469992 (libc++.1.dylib:arm64e+0x162fc)
+    #2 std::__1::lock_guard<std::__1::mutex>::lock_guard(std::__1::mutex&) __mutex_base:90 (queue.o:arm64+0x100005b2c)
+    #3 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&) ConcurrentQueue.cpp:70 (queue.o:arm64+0x1000073f0)
+    #4 main::$_1::operator()() const ConcurrentQueue.cpp:111 (queue.o:arm64+0x100007280)
+    #5 decltype(static_cast<main::$_1>(fp)()) std::__1::__invoke<main::$_1>(main::$_1&&) type_traits:3918 (queue.o:arm64+0x10000713c)
+    #6 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x1000070e8)
+    #7 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>>(void*) thread:298 (queue.o:arm64+0x100006ab4)
+
+  Thread T1 (tid=5538122, running) created by main thread at:
+    #0 pthread_create <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x2fda8)
+    #1 std::__1::__libcpp_thread_create(_opaque_pthread_t**, void* (*)(void*), void*) __threading_support:421 (queue.o:arm64+0x1000045d8)
+    #2 std::__1::thread::thread<main::$_0, void>(main::$_0&&) thread:314 (queue.o:arm64+0x100004284)
+    #3 std::__1::thread::thread<main::$_0, void>(main::$_0&&) thread:306 (queue.o:arm64+0x100003f50)
+    #4 main ConcurrentQueue.cpp:94 (queue.o:arm64+0x100003dcc)
+
+  Thread T2 (tid=5538123, running) created by main thread at:
+    #0 pthread_create <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x2fda8)
+    #1 std::__1::__libcpp_thread_create(_opaque_pthread_t**, void* (*)(void*), void*) __threading_support:421 (queue.o:arm64+0x1000045d8)
+    #2 std::__1::thread::thread<main::$_1, void>(main::$_1&&) thread:314 (queue.o:arm64+0x1000067e4)
+    #3 std::__1::thread::thread<main::$_1, void>(main::$_1&&) thread:306 (queue.o:arm64+0x100003fbc)
+    #4 main ConcurrentQueue.cpp:104 (queue.o:arm64+0x100003de4)
+
+SUMMARY: ThreadSanitizer: data race ConcurrentQueue.cpp:43 in ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::pop()
+==================
+==================
+WARNING: ThreadSanitizer: data race (pid=52970)
+  Write of size 8 at 0x00016d3f4e28 by thread T2 (mutexes: write M25):
+    #0 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&) ConcurrentQueue.cpp:71 (queue.o:arm64+0x100007440)
+    #1 main::$_1::operator()() const ConcurrentQueue.cpp:111 (queue.o:arm64+0x100007280)
+    #2 decltype(static_cast<main::$_1>(fp)()) std::__1::__invoke<main::$_1>(main::$_1&&) type_traits:3918 (queue.o:arm64+0x10000713c)
+    #3 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x1000070e8)
+    #4 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>>(void*) thread:298 (queue.o:arm64+0x100006ab4)
+
+  Previous read of size 8 at 0x00016d3f4e28 by thread T1:
+    #0 main::$_0::operator()() const ConcurrentQueue.cpp:97 (queue.o:arm64+0x10000583c)
+    #1 decltype(static_cast<main::$_0>(fp)()) std::__1::__invoke<main::$_0>(main::$_0&&) type_traits:3918 (queue.o:arm64+0x100005714)
+    #2 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_0>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_0>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x100005610)
+    #3 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_0>>(void*) thread:298 (queue.o:arm64+0x100004670)
+
+  Location is stack of main thread.
+
+  Mutex M25 (0x00016d3fa928) created at:
+    #0 pthread_mutex_lock <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x41dc0)
+    #1 std::__1::mutex::lock() <null>:52469992 (libc++.1.dylib:arm64e+0x162fc)
+    #2 std::__1::lock_guard<std::__1::mutex>::lock_guard(std::__1::mutex&) __mutex_base:90 (queue.o:arm64+0x100005b2c)
+    #3 ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&) ConcurrentQueue.cpp:70 (queue.o:arm64+0x1000073f0)
+    #4 main::$_1::operator()() const ConcurrentQueue.cpp:111 (queue.o:arm64+0x100007280)
+    #5 decltype(static_cast<main::$_1>(fp)()) std::__1::__invoke<main::$_1>(main::$_1&&) type_traits:3918 (queue.o:arm64+0x10000713c)
+    #6 void std::__1::__thread_execute<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>(std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>&, std::__1::__tuple_indices<>) thread:287 (queue.o:arm64+0x1000070e8)
+    #7 void* std::__1::__thread_proxy<std::__1::tuple<std::__1::unique_ptr<std::__1::__thread_struct, std::__1::default_delete<std::__1::__thread_struct>>, main::$_1>>(void*) thread:298 (queue.o:arm64+0x100006ab4)
+
+  Thread T2 (tid=5538123, running) created by main thread at:
+    #0 pthread_create <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x2fda8)
+    #1 std::__1::__libcpp_thread_create(_opaque_pthread_t**, void* (*)(void*), void*) __threading_support:421 (queue.o:arm64+0x1000045d8)
+    #2 std::__1::thread::thread<main::$_1, void>(main::$_1&&) thread:314 (queue.o:arm64+0x1000067e4)
+    #3 std::__1::thread::thread<main::$_1, void>(main::$_1&&) thread:306 (queue.o:arm64+0x100003fbc)
+    #4 main ConcurrentQueue.cpp:104 (queue.o:arm64+0x100003de4)
+
+  Thread T1 (tid=5538122, running) created by main thread at:
+    #0 pthread_create <null>:52469992 (libclang_rt.tsan_osx_dynamic.dylib:arm64e+0x2fda8)
+    #1 std::__1::__libcpp_thread_create(_opaque_pthread_t**, void* (*)(void*), void*) __threading_support:421 (queue.o:arm64+0x1000045d8)
+    #2 std::__1::thread::thread<main::$_0, void>(main::$_0&&) thread:314 (queue.o:arm64+0x100004284)
+    #3 std::__1::thread::thread<main::$_0, void>(main::$_0&&) thread:306 (queue.o:arm64+0x100003f50)
+    #4 main ConcurrentQueue.cpp:94 (queue.o:arm64+0x100003dcc)
+
+SUMMARY: ThreadSanitizer: data race ConcurrentQueue.cpp:71 in ConcurrentQueue<std::__1::function<void ()>*, 4096ull, 40000000ull>::push(std::__1::function<void ()>* const&)
+==================
